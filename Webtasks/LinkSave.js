@@ -14,10 +14,12 @@ function insertDocument(client, doc) {
   var createdList = [];
 
   dbLink = 'dbs/' + databaseId;
+  console.log(dbLink);
 
   collLink = dbLink + '/colls/' + collectionId;
-
-  client.createDocument(collLink, doc, function(err, document) {
+  console.log(collLink);
+  
+  client.createDocument(collLink, doc, function (err, document) {
     if (err) {
       console.log(err);
     } else {
@@ -27,27 +29,36 @@ function insertDocument(client, doc) {
   });
 }
 
-function shortUrl(num) {
+function shortUrl(num)
+{
   // Remove i, l and o to avoid letters which might be confused with numbers.
-  var chars = '0123456789abcdefghjkmnpqrstuvwxyz',
-    nbase = 33,
-    newNumber = '',
-    r;
+  var chars = '0123456789abcdefghjkmnpqrstuvwxyz'
+    , nbase = 33
+    , newNumber = ''
+    , r;
 
   // in r we have the offset of the char that was converted to the new base
   while (num >= nbase) {
     r = num % nbase;
     newNumber = chars[r] + newNumber;
-    num = ~~(num / nbase);
+    num = num / nbase;
   }
-
   // the last number to convert
   newNumber = chars[num] + newNumber;
 
   return _.padStart(newNumber, 3, '0');
 }
 
-module.exports = function(context, cb) {
+module.exports = function (context, cb) {
+  console.log(context.body);
+  var defaults = { 
+    saveDate: new Date().toISOString(),
+    blogged: false,
+    tweeted: false
+  } 
+
+  var client = new DocumentDBClient(context.secrets.endpoint, { masterKey: context.secrets.authKey });
+
   if (context.body === undefined) {
     cb(null, 'undefined');
   }
