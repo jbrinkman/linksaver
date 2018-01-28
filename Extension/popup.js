@@ -2,6 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+var DEBUG = true;
+var SERVICE_URL = DEBUG ? 'http://localhost:8080': 'https://wt-04d2752e1e94e431f2b22c742d2d7df7-0.run.webtask.io/linksave';
+
 /**
  * Get the current URL.
  *
@@ -37,14 +40,16 @@ function savePage() {
     page.category = category.value;
   }
 
-  fetch('https://wt-04d2752e1e94e431f2b22c742d2d7df7-0.run.webtask.io/linksave', {
+  fetch(SERVICE_URL, {
     method: 'post',
     headers: {
       'Accept': 'application/json, text/plain, */*',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(page)
-  }).then(response => window.close());
+  }).then(function(response) {
+    window.close();
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
