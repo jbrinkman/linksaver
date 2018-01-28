@@ -1,27 +1,14 @@
-var DocumentDBClient = require('documentdb').DocumentClient,
-  _ = require('underscore'),
-  databaseId = 'linkmuseum',
-  collectionId = 'link',
-  dbLink,
-  collLink;
+var DocumentDBClient = require('documentdb').DocumentClient;
+var _ = require('lodash');
+var databaseId = 'linkmuseum';
+var collectionId = 'link';
+var dbLink;
+var collLink;
 
-// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
-if (!String.prototype.padStart) {
-  String.prototype.padStart = function padStart(targetLength, padString) {
-    targetLength = targetLength >> 0; //truncate if number or convert non-number to 0;
-    padString = String(typeof padString !== 'undefined' ? padString : ' ');
-    if (this.length > targetLength) {
-      return String(this);
-    } else {
-      targetLength = targetLength - this.length;
-      if (targetLength > padString.length) {
-        padString += padString.repeat(targetLength / padString.length); //append to original to ensure we are longer than needed
-      }
-      return padString.slice(0, targetLength) + String(this);
-    }
-  };
-}
+const argv = process.execArgv.join();
+const isDebug = argv.includes('inspect') || argv.includes('debug');
+const debug_endpoint = 'https://localhost:8081/';
+const debug_authKey = 'C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==';
 
 function insertDocument(client, doc) {
   var createdList = [];
@@ -57,7 +44,7 @@ function shortUrl(num) {
   // the last number to convert
   newNumber = chars[num] + newNumber;
 
-  return newNumber.padStart(3, '0');
+  return _.padStart(newNumber, 3, '0');
 }
 
 module.exports = function(context, cb) {
@@ -69,12 +56,16 @@ module.exports = function(context, cb) {
       saveDate: new Date().toISOString(),
       blogged: false,
       tweeted: false,
-    },
-    client = new DocumentDBClient(context.secrets.endpoint, {
-      masterKey: context.secrets.authKey,
-    }),
-    document = _.pick(context.body, ['link', 'title', 'author', 'category']),
-    urlId;
+    };
+
+  var endpoint = isDebug ? debug_endpoint : context.secrets.endpoint;
+  var authKey = isDebug ? debug_authKey : context.secrets.authKey;
+
+  var client = new DocumentDBClient(endpoint, {
+    masterKey: authKey,
+  });
+  var document = _.pick(context.body, ['link', 'title', 'author', 'category'])
+  var urlId;
 
   context.storage.get(function(err, data) {
     if (err) return cb(err);
