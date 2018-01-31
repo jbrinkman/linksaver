@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-var DEBUG = true;
+var DEBUG = false;
 var SERVICE_URL = DEBUG ? 'http://localhost:8080': 'https://wt-04d2752e1e94e431f2b22c742d2d7df7-0.run.webtask.io/linksave';
 
 /**
