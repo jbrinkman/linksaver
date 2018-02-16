@@ -2,15 +2,23 @@
   "manifest_version": 2,
 
   "name": "Link Saver",
-  "description": "This extension allows you to save URLsyea.",
+  "description": "Easily currate content for link blogs and social sharing with Link Saver.",
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_title": "Link Saver",
+    "default_icon": "icons/icon.png",
+    "default_popup": "src/popup/popup.html"
+  },
+  "background": {
+    "scripts": ["src/shared/env.js", "node_modules/auth0-chrome/dist/auth0chrome.min.js", "src/auth/main.js"],
+    "persistent": false
   },
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "identity",
+    "notifications",
+    "https://*.auth0.com/*"
   ]
 }

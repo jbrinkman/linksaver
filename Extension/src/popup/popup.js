@@ -1,16 +1,9 @@
-// Copyright (c) 2014 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+var SERVICE_URL = env.DEBUG ? env.DEBUG_SERVICE_ENDPOINT : env.SERVICE_ENDPOINT;
 
-var DEBUG = false;
-var SERVICE_URL = DEBUG ? 'http://localhost:8080': 'https://wt-04d2752e1e94e431f2b22c742d2d7df7-0.run.webtask.io/linksave';
+// Minimal jQuery
+const $$ = document.querySelectorAll.bind(document);
+const $  = document.querySelector.bind(document);
 
-/**
- * Get the current URL.
- *
- * @param {function(string)} callback called when the URL of the current tab
- *   is found.
- */
 function getCurrentTabInfo(callback) {
   // Query filter to be passed to chrome.tabs.query - see
   // https://developer.chrome.com/extensions/tabs#method-query
@@ -20,9 +13,7 @@ function getCurrentTabInfo(callback) {
   };
 
   chrome.tabs.query(queryInfo, (tabs) => {
-
     var tab = tabs[0];
-
     callback({ url: tab.url, title: tab.title });
   });
 }
@@ -52,7 +43,7 @@ function savePage() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function renderForm(){
   getCurrentTabInfo((pageInfo) => {
     var save = document.getElementById('save');
 
@@ -61,4 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     save.addEventListener('click', savePage);
   });
-});
+}
+
+function renderAuth(){
+  $('#auth').classList.remove('hidden');
+  $('#linkInfo').classList.add('hidden');
+  $('#spinner').classList.add('hidden');
+}
+
+function main() {
+  const authResult = JSON.parse(localStorage.authResult || '{}');
+  const token = authResult.id_token;
+  if (token && isLoggedIn(token)) {
+    renderForm(authResult);
+  } else {
+    renderAuth();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', main);

@@ -1,0 +1,28 @@
+{
+  "name": "link-saver",
+  "version": "1.0.0",
+  "description": "Easily currate content for link blogs and social sharing with Link Saver.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbrinkman/linksaver.git"
+  },
+  "keywords": [
+    "Chrome",
+    "Auth0"
+  ],
+  "author": "Auth0",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jbrinkman/linksaver/issues"
+  },
+  "homepage": "https://github.com/jbrinkman/linksaver#readme",
+  "dependencies": {
+    "auth0-chrome": "^0.1.0",
+    "jwt-decode": "^2.1.0",
+    "normalize.css": "^8.0.0"
+  }
+}
