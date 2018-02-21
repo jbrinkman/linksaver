@@ -1,24 +1,39 @@
 {
   "manifest_version": 2,
-
   "name": "Link Saver",
   "description": "Easily currate content for link blogs and social sharing with Link Saver.",
   "version": "1.0",
-
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
   "browser_action": {
     "default_title": "Link Saver",
-    "default_icon": "icons/icon.png",
-    "default_popup": "src/popup/popup.html"
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    }
   },
   "background": {
-    "scripts": ["src/shared/env.js", "node_modules/auth0-chrome/dist/auth0chrome.min.js", "src/auth/main.js"],
+    "scripts": [
+      "src/shared/env.js",
+      "node_modules/auth0-chrome/dist/auth0chrome.min.js",
+      "src/background/main.js"
+    ],
     "persistent": false
   },
   "permissions": [
+    "tabs",
     "activeTab",
     "storage",
     "identity",
     "notifications",
-    "https://*.auth0.com/*"
+    "*://*/*"
+  ],
+  "web_accessible_resources": [
+    "src/content/linkpage.html"
   ]
 }

@@ -1,63 +1,81 @@
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
+
 <html>
 
 <head>
   <title>Getting Started Extension's Popup</title>
-  <link rel="stylesheet" type="text/css" href="../../node_modules/normalize.css/normalize.css" />
-  <link rel="stylesheet" type="text/css" href="popup.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
+    crossorigin="anonymous">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="linkpage.css" />
   <link rel="stylesheet" type="text/css" href="spinner.css" />
-
 </head>
 
 <body>
-  <div class="wrapper-overlay">
-    <div class="wrapper-main">
-      <h1 id="title">Link Curator</h1>
-      <div class="content">
-        <div id="linkInfo" class="hidden">
-          <div class="grid">
-            <label>Link</label>
-            <input id="linkUrl" type="text" />
-            <label>Title</label>
-            <input id="linkTitle" type="text" />
-            <label>Author</label>
-            <input id="linkAuthor" type="text" />
-            <label>Category</label>
-            <select id="linkCategory">
-              <option value="None">&lt;Nothing Selected&gt;</option>
-              <option value="Web Development">Web Development</option>
-              <option value="Cloud Development">Cloud Development</option>
-              <option value="Voice and IOT">Voice and IOT</option>
-              <option value="Artificial Intelligence and Machine Learning">Artificial Intelligence and Machine Learning</option>
-              <option value="Scripting">Scripting</option>
-              <option value="Miscellaneous Development">Miscellaneous Development</option>
-              <option value="Hobbies">Hobbies</option>
-            </select>
-          </div>
-          <button id="save">Post</button>
-        </div>
-        <div id="spinner" class="hidden">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div id="auth" class="hidden">
-          <div class="text-center">
-            <button class="btn btn-success login-button">Log In</button>
-          </div>
+  <div class="overlay"></div>
+  <div class="wrapper-main">
+    <div class="titlebar pure-g">
+      <div class="pure-u-2-3"><i class="ls-logo"></i>Link Saver</div>
+      <div class="pure-u-1-3 text-right">
+        <button class="link-button settings">
+          <i class="fas fa-cog"></i>
+        </button>
+        <button id="close" class="link-button close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <div class="content">
+      <div id="linkInfo" class="hidden">
+        <form class="pure-form pure-form-stacked">
+          <fieldset>
+            <label for="linkUrl">Link</label>
+            <input id="linkUrl" type="url" placeholder="http://somesite.com (required)" required />
+
+            <label for="linkTitle">Title</label>
+            <input id="linkTitle" type="text" placeholder="Page Title (required)" required/>
+
+            <label for="linkAuthor">Author</label>
+            <input id="linkAuthor" type="text" placeholder="Page Author (Optional)" />
+
+            <label for="linkCategory">Category</label>
+            <div class="custom-select">
+              <i class="fas fa-angle-down"></i>
+              <select id="linkCategory">
+                <option value="None">&lt;Nothing Selected&gt;</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Cloud Development">Cloud Development</option>
+                <option value="Voice and IOT">Voice and IOT</option>
+                <option value="Artificial Intelligence and Machine Learning">Artificial Intelligence and Machine Learning</option>
+                <option value="Scripting">Scripting</option>
+                <option value="Miscellaneous Development">Miscellaneous Development</option>
+                <option value="Hobbies">Hobbies</option>
+              </select>
+            </div>
+
+            <button id="save" class="pure-button pure-button-primary">Save</button>
+          </fieldset>
+        </form>
+      </div>
+      <div id="spinner" class="hidden">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div id="auth" class="hidden">
+        <div class="text-center">
+          <button id="login" class="pure-button pure-button-outline button-icon"><i class="fas fa-lock"></i>Log In</button>
         </div>
       </div>
     </div>
   </div>
-  <script src="../shared/env.js"></script>
-  <script src="popup.js"></script>
-  <script src="../../node_modules/jwt-decode/build/jwt-decode.js"></script>
+  <script src="/src/shared/env.js" type="text/javascript"></script>
+  <script src="/node_modules/auth0-chrome/dist/auth0chrome.min.js" type="text/javascript"></script>
+  <script src="/node_modules/jwt-decode/build/jwt-decode.js" type="text/javascript"></script>
+  <script src="linkpage.js" type="text/javascript"></script>
+
 </body>
 
 </html>

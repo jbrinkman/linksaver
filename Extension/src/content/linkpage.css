@@ -1,0 +1,114 @@
+html,
+body {
+    font-size: 16px;
+}
+
+input,
+select,
+option {
+    font-size: .75rem;
+}
+
+.pure-form select {
+    height: 2rem;
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+.pure-form input {
+    width: 100%;
+}
+
+button.pure-button {
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+.button-icon > .fas {
+    margin-right: 1rem;
+}
+
+.pure-button-outline {
+    background-color: transparent;
+    color: #14A2AE;
+    border: 2px solid #14A2AE;
+    border-radius: .25rem;
+}
+
+.overlay {
+    background-color: #333;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.25;
+}
+
+.wrapper-main {
+    background-color: #fafafa;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    bottom: 0;
+    box-shadow: -2px 0px 10px 0px rgba(50, 50, 50, 0.5);
+}
+
+.titlebar {
+    font-size: 1.25rem;
+    margin: 0;
+    padding: .75em;
+    background-color: #0E3042;
+    color: #fafafa;
+    position: relative;
+}
+
+.titlebar .link-button {
+    padding: 0 .25rem;
+    background-color: transparent;
+    border: 0 solid transparent;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.titlebar .link-button:hover {
+    color: #14A2AE;
+}
+
+.content {
+    padding: 1rem 1.5rem;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.custom-select {
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.custom-select .fa-angle-down {
+    position: absolute;
+    right: .75rem;
+    top: .75rem;
+    pointer-events: none;
+    color: #688;
+}
+
+i.ls-logo {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url("/icons/icon-48.png");
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 1rem;
+}
