@@ -19,21 +19,53 @@ option {
     width: 100%;
 }
 
-button.pure-button {
+.pure-button {
     margin: 1rem 0;
     border-radius: 5px;
 }
 
-.button-icon > .fas {
+.button-with-icon > .fas, .button-with-icon > .far {
     margin-right: 1rem;
 }
 
-.pure-button-outline {
+.button-primary {
     background-color: transparent;
-    color: #14A2AE;
-    border: 2px solid #14A2AE;
+    color: var(--accent2-dark);
+    border: 2px solid var(--accent2-dark);
     border-radius: .25rem;
 }
+
+.button-secondary {
+    background-color: transparent;
+    color:var(--accent2-gray);
+    border:2px solid transparent;
+    text-decoration: underline;
+    font-size: .8rem;
+}
+
+.button-secondary:hover {
+    background-image: none;
+    border: 2px solid var(--accent2-dark);
+    color: var(--accent2-dark);
+}
+
+.button-glyph {
+    padding: 0 .25rem;
+    background-color: transparent;
+    background-image: none;
+    border: 0 solid transparent;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.button-glyph.light {
+    color: var(--background-light);
+}
+.button-glyph:hover {
+    color: var(--accent2-dark);
+}
+
 
 .overlay {
     background-color: #333;
@@ -46,7 +78,7 @@ button.pure-button {
 }
 
 .wrapper-main {
-    background-color: #fafafa;
+    background-color: var(--background-light);
     position: fixed;
     top: 0;
     right: 0;
@@ -59,21 +91,26 @@ button.pure-button {
     font-size: 1.25rem;
     margin: 0;
     padding: .75em;
-    background-color: #0E3042;
-    color: #fafafa;
+    background-color: var(--background-dark);
+    color: var(--background-light);
     position: relative;
 }
 
-.titlebar .link-button {
+.button-glyph {
     padding: 0 .25rem;
     background-color: transparent;
+    background-image: none;
     border: 0 solid transparent;
     font-size: 1rem;
     font-weight: bold;
+    margin: 0;
 }
 
-.titlebar .link-button:hover {
-    color: #14A2AE;
+.button-glyph.light {
+    color: var(--background-light);
+}
+.button-glyph:hover {
+    color: var(--accent2-dark);
 }
 
 .content {
@@ -100,7 +137,7 @@ button.pure-button {
     right: .75rem;
     top: .75rem;
     pointer-events: none;
-    color: #688;
+    color: var(--accent3-gray);
 }
 
 i.ls-logo {

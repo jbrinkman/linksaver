@@ -1,11 +1,30 @@
 (function (d) {
     const $ = d.querySelector.bind(d);
 
-    function init(){
+    function init() {
         $('#close').addEventListener("click", () => {
-            window.parent.postMessage("LS_CLOSE", "*");
+            window.parent.postMessage({ messageType: messageType.Close }, "*");
         });
+        window.addEventListener("message", messageHandler);
         main();
+    }
+
+    function messageHandler(event) {
+        switch (event.data.messageType) {
+            case messageType.AuthOk:
+                main();
+                break;
+            case messageType.AuthFail:
+                // TODO: Add more error notification.
+                main();
+                break;
+            case messageType.SaveOk:
+                window.parent.postMessage({ messageType: messageType.Close }, "*");
+                break;
+            case messageType.SaveFail:
+                main();
+                break;
+        }
     }
 
     function main() {
@@ -40,6 +59,7 @@
         });
 
         $('#save').addEventListener('click', savePage);
+        $('#logout').addEventListener('click', logout);
     }
 
     function renderAuth() {
@@ -50,7 +70,7 @@
         $('#login').addEventListener('click', () => {
             $('#auth').classList.add('hidden');
             $('#spinner').classList.remove('hidden');
-            window.parent.postMessage("LS_AUTH", "*");
+            window.parent.postMessage({ messageType: messageType.Auth }, "*");
         });
     }
 
@@ -74,27 +94,16 @@
 
         page.link = {};
         page.link.longUrl = $('#linkUrl').value;
-
         page.title = $('#linkTitle').value;
         page.author = $('#linkAuthor').value;
         if (category.value != "None") {
             page.category = category.value;
         }
 
-        fetch(SERVICE_URL, {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(page)
-        }).then(function (response) {
-            window.close();
-        });
-    }
-
-    function authenticate(sendResponse) {
-
+        window.parent.postMessage({
+            messageType: messageType.Save,
+            page: page
+        }, "*");
     }
 
     init();

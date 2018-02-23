@@ -20,6 +20,7 @@
   "background": {
     "scripts": [
       "src/shared/env.js",
+      "src/shared/constants.js",
       "node_modules/auth0-chrome/dist/auth0chrome.min.js",
       "src/background/main.js"
     ],

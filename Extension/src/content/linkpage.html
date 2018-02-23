@@ -8,20 +8,22 @@
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
     crossorigin="anonymous">
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="linkpage.css" />
-  <link rel="stylesheet" type="text/css" href="spinner.css" />
+  <link rel="stylesheet" type="text/css" href="styles/global.css" />
+  <link rel="stylesheet" type="text/css" href="styles/linkpage.css" />
+  <link rel="stylesheet" type="text/css" href="styles/spinner.css" />
 </head>
 
 <body>
   <div class="overlay"></div>
   <div class="wrapper-main">
     <div class="titlebar pure-g">
-      <div class="pure-u-2-3"><i class="ls-logo"></i>Link Saver</div>
+      <div class="pure-u-2-3">
+        <i class="ls-logo"></i>Link Saver</div>
       <div class="pure-u-1-3 text-right">
-        <button class="link-button settings">
+        <button id="options" class="pure-button button-glyph light settings hidden">
           <i class="fas fa-cog"></i>
         </button>
-        <button id="close" class="link-button close">
+        <button id="close" class="pure-button button-glyph light close">
           <i class="fas fa-times"></i>
         </button>
       </div>
@@ -53,8 +55,15 @@
                 <option value="Hobbies">Hobbies</option>
               </select>
             </div>
-
-            <button id="save" class="pure-button pure-button-primary">Save</button>
+            <div class="pure-g">
+              <div class="pure-u-1-2">
+                <button id="save" class="pure-button button-primary button-with-icon">
+                  <i class="far fa-save"></i>Save</button>
+              </div>
+              <div class="pure-u-1-2 text-right">
+                <button id="logout" class="pure-button button-secondary">Logout</button>
+              </div>
+            </div>
           </fieldset>
         </form>
       </div>
@@ -66,13 +75,14 @@
       </div>
       <div id="auth" class="hidden">
         <div class="text-center">
-          <button id="login" class="pure-button pure-button-outline button-icon"><i class="fas fa-lock"></i>Log In</button>
+          <button id="login" class="pure-button button-primary button-with-icon">
+            <i class="fas fa-lock"></i>Log In</button>
         </div>
       </div>
     </div>
   </div>
   <script src="/src/shared/env.js" type="text/javascript"></script>
-  <script src="/node_modules/auth0-chrome/dist/auth0chrome.min.js" type="text/javascript"></script>
+  <script src="/src/shared/constants.js" type="text/javascript"></script>
   <script src="/node_modules/jwt-decode/build/jwt-decode.js" type="text/javascript"></script>
   <script src="linkpage.js" type="text/javascript"></script>
 
