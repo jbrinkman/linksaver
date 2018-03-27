@@ -1,16 +1,18 @@
 {
-  "name": "linksaver",
+  "name": "linksave-express",
   "version": "1.0.0",
   "description": "Simple project to save links",
-  "main": "LinkSave.js",
+  "main": "linksave.js",
   "dependencies": {
     "documentdb": "^1.14.2",
-    "lodash": "^4.17.4"
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "webtask-tools": "^3.2.0"
   },
   "devDependencies": {},
   "scripts": {
-    "webtask": "wt serve --parse-body LinkSave.js --secrets-file .secrets --storage-file .storage",
-    "webtask-debug": "set NODE_TLS_REJECT_UNAUTHORIZED=0&&wt debug --parse-body LinkSave.js --secrets-file .secrets --storage-file .storage"
+    "webtask": "wt serve --parse-body linksave.js --secrets-file .secrets --storage-file .storage",
+    "webtask-debug": "set NODE_TLS_REJECT_UNAUTHORIZED=0&&wt debug --parse-body linksave.js --secrets-file .secrets --storage-file .storage"
   },
   "author": "Joe Brinkman",
   "license": "MIT"

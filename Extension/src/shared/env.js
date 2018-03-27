@@ -1,5 +1,5 @@
 window.env = {
-  DEBUG: false,
+  DEBUG: true,
   AUTH0_DOMAIN: 'brinkman.auth0.com',
   AUTH0_CLIENT_ID: 'IWo5v5IAoO_cPPNwPmmpCoTw348uvXPI',
   DEBUG_SERVICE_ENDPOINT: 'http://localhost:8080',
