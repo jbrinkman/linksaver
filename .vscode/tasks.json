@@ -6,11 +6,20 @@
         {
             "label": "webtask",
             "type": "shell",
-            "command": "wt serve --parse-body ./webtasks/LinkSave.js --secrets-file ./webtasks/.secrets --storage-file ./webtasks/.storage",
+            "command": "wt serve --parse-body ./webtasks/app.js --secrets-file ./webtasks/.secrets --storage-file ./webtasks/.storage",
             "problemMatcher": []
         },
         {
             "label": "webtask debug",
+            "type": "shell",
+            "command": "set NODE_TLS_REJECT_UNAUTHORIZED=0 && wt debug --parse-body ./webtasks/app.js --secrets-file ./webtasks/.secrets --storage-file ./webtasks/.storage",
+            "windows": {
+                "command": ".\\Scripts\\debug.cmd"
+            },
+            "problemMatcher": [],
+        },
+        {
+            "label": "webtask debug old",
             "type": "shell",
             "command": "./Scripts/debug.sh",
             "windows": {

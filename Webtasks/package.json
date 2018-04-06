@@ -11,8 +11,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "webtask": "wt serve --parse-body linksave.js --secrets-file .secrets --storage-file .storage",
-    "webtask-debug": "set NODE_TLS_REJECT_UNAUTHORIZED=0&&wt debug --parse-body linksave.js --secrets-file .secrets --storage-file .storage"
+    "webtask": "wt serve --parse-body app.js --secrets-file .secrets --storage-file .storage",
+    "webtask-debug": "set NODE_TLS_REJECT_UNAUTHORIZED=0 && wt debug --parse-body app.js --secrets-file .secrets --storage-file .storage"
   },
   "author": "Joe Brinkman",
   "license": "MIT"

@@ -10,8 +10,8 @@
             "protocol": "inspector",
             "name": "Attach to Node",
             "port": 9229,
-            "localRoot": "${workspaceFolder}\\Webtasks",
-            "remoteRoot": "null"
+            "localRoot": "${workspaceFolder}/Webtasks",
+            "remoteRoot": "~/Documents/Projects/linksaver"
         }
     ]
 }

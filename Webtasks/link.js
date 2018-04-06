@@ -1,3 +1,6 @@
+// This is the old way of doing this.
+
+
 var DocumentDBClient = require('documentdb').DocumentClient;
 var _ = require('lodash');
 var databaseId = 'linkmuseum';
