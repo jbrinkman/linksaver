@@ -1,9 +1,13 @@
+var fs = require('fs');
 
 dbClient.prototype.insertDocument = function (doc) {
-    //TODO: Add code to append this to a local text file
-    
-    console.log(`Document: ${doc}`);
-}; 
+    fs.appendFile(require('app-root-path').resolve(this.dbfile), JSON.stringify(doc) + '\n', 'utf8',
+       function (err) {
+            if (err) throw err;
+            // if no error
+            console.log("Link is appended to file successfully.")
+        });
+};
 
 function dbClient(dbconfig) {
 
@@ -13,6 +17,7 @@ function dbClient(dbconfig) {
 
     this.config = dbconfig;
     this.isDebug = true;
+    this.dbfile = `/data/${this.config.databaseId}.${this.config.collectionId}.json`;
 }
 
-module.exports = dbClient; 
+module.exports = dbClient;

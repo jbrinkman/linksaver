@@ -4,6 +4,7 @@
   "description": "Simple project to save links",
   "main": "linksave.js",
   "dependencies": {
+    "app-root-path": "^2.0.1",
     "documentdb": "^1.14.2",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
