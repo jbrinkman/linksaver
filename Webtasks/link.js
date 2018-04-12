@@ -1,3 +1,6 @@
+// This is the old way of doing this.
+
+
 var DocumentDBClient = require('documentdb').DocumentClient;
 var _ = require('lodash');
 var databaseId = 'linkmuseum';
@@ -18,7 +21,7 @@ function insertDocument(client, doc) {
 
   collLink = dbLink + '/colls/' + collectionId;
   console.log(collLink);
-  
+
   client.createDocument(collLink, doc, function (err, document) {
     if (err) {
       console.log(err);
@@ -29,8 +32,7 @@ function insertDocument(client, doc) {
   });
 }
 
-function shortUrl(num)
-{
+function shortUrl(num) {
   // Remove i, l and o to avoid letters which might be confused with numbers.
   var chars = '0123456789abcdefghjkmnpqrstuvwxyz'
     , nbase = 33
@@ -51,23 +53,16 @@ function shortUrl(num)
 
 module.exports = function (context, cb) {
   console.log(context.body);
-  var defaults = { 
-    saveDate: new Date().toISOString(),
-    blogged: false,
-    tweeted: false
-  } 
-
-  var client = new DocumentDBClient(context.secrets.endpoint, { masterKey: context.secrets.authKey });
 
   if (context.body === undefined) {
     cb(null, 'undefined');
   }
 
   var defaults = {
-      saveDate: new Date().toISOString(),
-      blogged: false,
-      tweeted: false,
-    };
+    saveDate: new Date().toISOString(),
+    blogged: false,
+    tweeted: false,
+  };
 
   var endpoint = isDebug ? debug_endpoint : context.secrets.endpoint;
   var authKey = isDebug ? debug_authKey : context.secrets.authKey;
@@ -78,7 +73,7 @@ module.exports = function (context, cb) {
   var document = _.pick(context.body, ['link', 'title', 'author', 'category'])
   var urlId;
 
-  context.storage.get(function(err, data) {
+  context.storage.get(function (err, data) {
     if (err) return cb(err);
 
     data = data || { urlId: 1 };
@@ -102,7 +97,7 @@ module.exports = function (context, cb) {
 
     insertDocument(client, document);
 
-    context.storage.set(data, function(error) {
+    context.storage.set(data, function (error) {
       if (error) return cb(error);
 
       cb(null, 'Hello');
