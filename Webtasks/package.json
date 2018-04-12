@@ -10,7 +10,9 @@
     "lodash": "^4.17.4",
     "webtask-tools": "^3.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jsonfile": "^4.0.0"
+  },
   "scripts": {
     "webtask": "wt serve --parse-body app.js --secrets-file .secrets --storage-file .storage",
     "webtask-debug": "set NODE_TLS_REJECT_UNAUTHORIZED=0 && wt debug --parse-body app.js --secrets-file .secrets --storage-file .storage"

@@ -1,12 +1,23 @@
-var fs = require('fs');
+var jsonfile = require('jsonfile');
 
 dbClient.prototype.insertDocument = function (doc) {
-    fs.appendFile(require('app-root-path').resolve(this.dbfile), JSON.stringify(doc) + '\n', 'utf8',
-       function (err) {
+    var file = require('app-root-path').resolve(this.dbfile);
+    jsonfile.readFile(file,
+        function (err, db) {
             if (err) throw err;
-            // if no error
-            console.log("Link is appended to file successfully.")
-        });
+            console.log(db.length);
+            db.push(doc);
+            jsonfile.writeFile(file,
+                db, {
+                    spaces: 4
+                },
+                function (err) {
+                    if (err) throw err;
+                    // if no error
+                    console.log("Link is appended to file successfully.")
+                });
+        }
+    );
 };
 
 function dbClient(dbconfig) {

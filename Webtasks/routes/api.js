@@ -49,6 +49,7 @@ router.route('/links')
 
       context.storage.set(data, function (err) {
         if (err) return next(new Error(err));
+        res.json(200);
       });
     });
 
